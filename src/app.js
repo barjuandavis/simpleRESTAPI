@@ -2,10 +2,19 @@ import express from 'express';
 const app = express();
 import morgan from 'morgan';
 import bodyParser from 'body-parser';
+import mongoose from 'mongoose';
 
 import productRoutes from './api/routes/products';
 import orderRoutes from './api/routes/orders';
 
+/*
+    replace MONGO_ATLAS_PW with your account password. 
+    The environtment file is nodemon.json at the root
+    of this project.
+*/ 
+mongoose.connect(
+    'mongodb+srv://admin:'+ process.env.MONGO_ATLAS_PW + '@node-rest-api-ir5pt.mongodb.net/test?retryWrites=true&w=majority', 
+);
 
 app.use(morgan('dev')); 
 app.use(bodyParser.urlencoded({extended: false}));
